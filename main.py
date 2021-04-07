@@ -84,6 +84,14 @@ export_menu = [
         ]
     },
 
+    {
+        'type': 'input',
+        'name': 'fileName',
+        'message': 'What\'s should we call the file?',
+        'default': lambda e: "out." + e["format"],
+        'validate': lambda val: ("." in val)  or 'don\'t forget the file extension'
+    },
+
 ]
 
 
@@ -94,9 +102,17 @@ subset_menu = [
         'message': 'Select toppings',
         'name': 'colleges',
         'choices': aS,
-        'validate': lambda answer: 'You must choose at least one topping.' \
+        'validate': lambda answer: 'You must choose at least one option.' \
             if len(answer) == 0 else True
-    }
+    },
+
+    {
+        'type': 'confirm',
+        'name': 'override',
+        'message': 'Do you want to have your subset override the orginal dataset (helpful for exporting and to see stats?',
+        # 'when': lambda answers: answers['bacon']
+    },
+
 ]
 
 while True:
@@ -116,6 +132,10 @@ while True:
 
         e = prompt(subset_menu)
         sub = df[df.Winner.isin(e["colleges"]) | df.Winner.isin(e["colleges"]) ]
+
+        if e["override"] == True:
+            df = sub.copy()
+
         print(colors.fg.orange, "\n  ✂️Subsetted to include the following:", e["colleges"], "✂️ \n",colors.reset)
         print(sub,"\n\n") 
 
@@ -123,14 +143,14 @@ while True:
         print(colors.fg.orange, "\n  📤 Exporting Data  📤 \n",colors.reset)
 
         e = prompt(export_menu)
-       
+        print(e)
 
         if e["format"] == 'tsv':
-            to_tsv(df)
+            to_tsv(df,e["fileName"])
         elif e["format"] == 'csv':
-            to_csv(df)
+            to_csv(df,e["fileName"])
         elif e["format"] == 'json':
-            to_json(df)
+            to_json(df,e["fileName"])
 
         print("\n exported as",e["format"], "in output folder \n\n")
 
