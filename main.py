@@ -78,7 +78,7 @@ export_menu = [
         'name': 'format',
         'message': 'What format should we export it in?',
         'choices': [
-            'csv','tsv','json'
+            'csv','tsv','json',Separator(), "Go Back"
            
             
         ]
@@ -89,7 +89,8 @@ export_menu = [
         'name': 'fileName',
         'message': 'What\'s should we call the file?',
         'default': lambda e: "out." + e["format"],
-        'validate': lambda val: ("." in val)  or 'don\'t forget the file extension'
+        'validate': lambda val: ("." in val)  or 'don\'t forget the file extension',
+        'when': lambda e: "Go Back" not in e["format"] 
     },
 
 ]
@@ -98,8 +99,8 @@ export_menu = [
 subset_menu = [
     {
         'type': 'checkbox',
-        'qmark': '😃',
-        'message': 'Select toppings',
+        'qmark': '🎒',
+        'message': 'Select colleges',
         'name': 'colleges',
         'choices': aS,
         'validate': lambda answer: 'You must choose at least one option.' \
@@ -109,7 +110,7 @@ subset_menu = [
     {
         'type': 'confirm',
         'name': 'override',
-        'message': 'Do you want to have your subset override the orginal dataset (helpful for exporting and to see stats?',
+        'message': 'Do you want to have your subset override the orginal dataset? (helpful for exporting and to see stats)',
         # 'when': lambda answers: answers['bacon']
     },
 
@@ -143,7 +144,7 @@ while True:
         print(colors.fg.orange, "\n  📤 Exporting Data  📤 \n",colors.reset)
 
         e = prompt(export_menu)
-        print(e)
+        # print(e)
 
         if e["format"] == 'tsv':
             to_tsv(df,e["fileName"])
@@ -151,16 +152,18 @@ while True:
             to_csv(df,e["fileName"])
         elif e["format"] == 'json':
             to_json(df,e["fileName"])
-
-        print("\n exported as",e["format"], "in output folder \n\n")
+        if  e["format"] != 'Go Back':
+            print("\n Exported", e["fileName"], "to  output folder \n\n")
 
 
     if answers["command"] == "Quit":
+
+        print("\n Goodbye  😢  \n\n")
         break;
 
     
         
 
-    time.sleep(3)
+    time.sleep(1.5)
 
     
