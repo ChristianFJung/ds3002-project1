@@ -9,4 +9,6 @@ RUN pip install prompt_toolkit==1.0.14
 
 COPY . .
 
-CMD "python3 main.py"
+
+
+#ENTRYPOINT "python3 main.py" && /bin/bash
