@@ -1,4 +1,4 @@
-# Lebron Roboto - an iteractive March Madness Data Console
+# Lebron Roboto - an Iteractive March Madness Data Console
 This is a project for my DS 3002 class to make an ETL data processor. As I began creating it, it evolved into a sort of terminal based chat bot. I had a lot of fun making it and hope to use the knowledge that I learned in creating this to further some of my recent work in automating data encoding. 
 
 ## What It Can do?
