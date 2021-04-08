@@ -4,7 +4,7 @@ This is a project for my DS 3002 class to make an ETL data processor. As I began
 **How to Get Started Video**
 [![Watch the video](./scratch/video.png)](https://www.loom.com/share/f1a8f62010554dd09ef7fdd7c5768c46)
 
-## What It Can do?
+## What Can It do?
 - View all March Madness Winners and Losers
 - Print Statistical Information
 - Subset to Certain Colleges
