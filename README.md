@@ -20,3 +20,9 @@ This is a project for my DS 3002 class to make an ETL data processor. As I began
 3. `docker run -i -t proj1 /bin/bash`
 4.  `python3 main.py`
 
+
+<center>
+https://www.loom.com/share/f1a8f62010554dd09ef7fdd7c5768c46
+
+
+</center>
